@@ -7,7 +7,7 @@ class CustomUserDetails extends GrailsUser{
 
     final String fullName
 
-    MyUserDetails(String username, String password, boolean enabled,
+    CustomUserDetails(String username, String password, boolean enabled,
                   boolean accountNonExpired, boolean credentialsNonExpired,
                   boolean accountNonLocked,
                   Collection<GrantedAuthority> authorities,
