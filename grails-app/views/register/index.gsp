@@ -41,6 +41,12 @@
                         <input type="text" placeholder="Your full name" class="form-control" name="fullname" id="fullname" autocapitalize="none"/>
                     </div>
 
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="text" placeholder="Your email" class="form-control" name="email" id="email" autocapitalize="none"/>
+                    </div>
+
+
                     <button id="submit" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
                     <hr class="my-4">
                     <p>Already have an account? <g:link controller="login" action="auth">Login</g:link></p>
