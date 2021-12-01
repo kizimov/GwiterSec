@@ -1,6 +1,7 @@
 package qwittersec
 
 import grails.testing.services.ServiceUnitTest
+import gwittersec.CustomUserDetailsService
 import spock.lang.Specification
 
 class CustomUserDetailsServiceSpec extends Specification implements ServiceUnitTest<CustomUserDetailsService>{

@@ -1,6 +1,5 @@
 import gwittersec.PersonPasswordEncoderListener
-import org.springframework.security.core.userdetails.UserDetailsService
-import qwittersec.CustomUserDetailsService
+import gwittersec.CustomUserDetailsService
 // Place your Spring DSL code here
 beans = {
     personPasswordEncoderListener(PersonPasswordEncoderListener)

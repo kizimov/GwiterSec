@@ -1,4 +1,4 @@
-package qwittersec
+package gwittersec
 
 import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.plugin.springsecurity.userdetails.GrailsUserDetailsService
