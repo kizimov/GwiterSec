@@ -4,6 +4,7 @@ import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 import grails.compiler.GrailsCompileStatic
 
+
 @GrailsCompileStatic
 @EqualsAndHashCode(includes='username')
 @ToString(includes='username', includeNames=true, includePackage=false)
@@ -13,8 +14,7 @@ class Person implements Serializable {
 
     String username
     String password
-    String email
-    String fullName
+
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked
@@ -27,12 +27,11 @@ class Person implements Serializable {
     static constraints = {
         password nullable: false, blank: false, password: true
         username nullable: false, blank: false, unique: true
-        email nullable: false, blank: false, unique: true
-        fullName nullable: false, blank: false
+
 
     }
 
     static mapping = {
-	    password column: '`password`'
+        password column: '`password`'
     }
 }
