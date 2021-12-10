@@ -26,9 +26,9 @@
             <g:pageProperty name="page.nav"/>
             <sec:ifLoggedIn>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        <sec:loggedInUserInfo field='fullname'/>
-                    </a>
+                    %{--<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">--}%
+                        %{--<sec:loggedInUserInfo field='fullname'/>--}%
+                    %{--</a>--}%
                     <div class="dropdown-menu navbar-dark">
                         <g:form controller="logout">
                             <g:submitButton class="dropdown-item navbar-dark color-light" name="Submit" value="Logout" style="color:gray" />
