@@ -31,7 +31,7 @@ spring:
                 - 'logback.groovy'
                 - '*.properties'
     liquibase:
-        enabled: false
+        enabled: true
 
 management:
     endpoints:
@@ -93,6 +93,12 @@ management:
     endpoints:
         jmx:
             unique-names: true
+---
+grails:
+    plugin:
+        databasemigration:
+            updateOnStart: true
+            updateOnStartFileName: changelog.groovy
 
 ---
 hibernate:
@@ -102,42 +108,43 @@ hibernate:
         use_second_level_cache: false
         use_query_cache: false
 dataSource:
+    dbCreate: none
     pooled: true
     jmxExport: true
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
     dialect: org.hibernate.dialect.SQLServer2012Dialect
-    username: user
-    password: password
+    username: root
+    password: root
     url: jdbc:sqlserver://localhost:1434;databaseName=Gwittersec
 
-environments:
-    development:
-        dataSource:
-            dbCreate: create-drop
-            url: jdbc:sqlserver://localhost:1434;databaseName=Gwittersec
-    test:
-        dataSource:
-            dbCreate: update
-            url: jdbc:sqlserver://localhost:1434;databaseName=Gwittersec
-    production:
-        dataSource:
-            dbCreate: none
-            url: jdbc:sqlserver://localhost:1434;databaseName=Gwittersec
-            properties:
-                jmxEnabled: true
-                initialSize: 5
-                maxActive: 50
-                minIdle: 5
-                maxIdle: 25
-                maxWait: 10000
-                maxAge: 600000
-                timeBetweenEvictionRunsMillis: 5000
-                minEvictableIdleTimeMillis: 60000
-                validationQuery: SELECT 1
-                validationQueryTimeout: 3
-                validationInterval: 15000
-                testOnBorrow: true
-                testWhileIdle: true
-                testOnReturn: false
-                jdbcInterceptors: ConnectionState
-                defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+#environments:
+#    development:
+#        dataSource:
+#            dbCreate: none
+#            url: jdbc:sqlserver://localhost:1434;databaseName=Gwittersec
+#    test:
+#        dataSource:
+#            dbCreate: none
+#            url: jdbc:sqlserver://localhost:1434;databaseName=Gwittersec
+#    production:
+#        dataSource:
+#            dbCreate: none
+#            url: jdbc:sqlserver://localhost:1434;databaseName=Gwittersec
+#            properties:
+#                jmxEnabled: true
+#                initialSize: 5
+#                maxActive: 50
+#                minIdle: 5
+#                maxIdle: 25
+#                maxWait: 10000
+#                maxAge: 600000
+#                timeBetweenEvictionRunsMillis: 5000
+#                minEvictableIdleTimeMillis: 60000
+#                validationQuery: SELECT 1
+#                validationQueryTimeout: 3
+#                validationInterval: 15000
+#                testOnBorrow: true
+#                testWhileIdle: true
+#                testOnReturn: false
+#                jdbcInterceptors: ConnectionState
+#                defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
