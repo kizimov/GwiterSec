@@ -15,12 +15,6 @@ class PersonRole implements Serializable {
 	Person person
 	Role role
 
-	PersonRole(Person p, Role r){
-		this()
-		person =p
-		role = r
-	}
-
 	@Override
 	boolean equals(other) {
 		if (other instanceof PersonRole) {

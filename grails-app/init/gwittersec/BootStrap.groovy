@@ -30,13 +30,27 @@ class BootStrap {
             PersonRole.create(person, userRole, true)
             }
 
-        createPerson 'admin@example.com', 'password'
+        createPerson 'example', 'password'
+        createPerson 'user', 'user'
         createPerson 'Jeff@gmail.com', 'pass1234'
         createPerson 'Lari777@mail.ru', 'Loki'
         createPerson 'Graeme_jr@i.ua', 'Dog_Rose'
 
         def anonymUser = new Person(username: 'anonym', password: 'anonym').save(failOnError: false)
         PersonRole.create(anonymUser, anonymRole, true)
+
+        def createTwit = {String header, String content, BigInteger person_id ->
+            Twit.create(header, content, Person.findById(person_id), true)
+        }
+
+        createTwit 'twit#1', 'some text for twit 1', 1
+        createTwit 'twit#1', 'some text for twit 1', 2
+        createTwit 'twit#1', 'some text for twit 1', 3
+        createTwit 'twit#2', 'some text for twit 2', 3
+        createTwit 'twit#3', 'some text for twit 3', 3
+        createTwit 'twit#4', 'some text for twit 4', 4
+        createTwit 'twit#2', 'some text for twit 2', 1
+
 
     }
     def destroy = {
