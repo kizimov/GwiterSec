@@ -19,7 +19,7 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${twitList}" />
+            <f:table collection="${twitList}" properties="header, content, person.username"/>
 
             <div class="pagination">
                 <g:paginate total="${twitCount ?: 0}" />
