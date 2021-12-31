@@ -10,13 +10,13 @@ class TwitController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYM'])
+    @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond twitService.list(params), model:[twitCount: twitService.count()]
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYM'])
+    @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
     def show(Long id) {
         respond twitService.get(id)
     }

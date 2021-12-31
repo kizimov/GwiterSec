@@ -8,7 +8,7 @@ import gwittersec.Role
 import gwittersec.PersonRole
 
 @Transactional
-@Secured('permitAll')
+@Secured('ROLE_ANONYMOUS')
 class RegisterController {
 
     static allowedMethods = [register: "POST"]

@@ -24,7 +24,6 @@ class Twit implements Validateable {
 
         if ((instance in Twit.findAll()) && (person.id in twitIsExist.personId)) {
             println('such a tweet is already in the database')
-            println(instance.toString() + ' person_id ' + person.id)
         }
         else {
             instance.save(flush: flush)

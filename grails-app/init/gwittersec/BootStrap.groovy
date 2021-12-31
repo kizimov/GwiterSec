@@ -13,11 +13,6 @@ class BootStrap {
         // def adminRole = new Role(authority: 'ROLE_ADMIN').save()
         def adminRole = Role.findOrSaveWhere(authority: 'ROLE_ADMIN')
 
-        //default user role
-        //As anonymous user I want to be able to see list of registered users
-        //As anonymous user I want to be able to read posts of specified user
-        def anonymRole = Role.findOrSaveWhere(authority: 'ROLE_ANONYM')
-
         //can create posts, do subscription, see list of registered users, read posts of specified user
         def userRole = Role.findOrSaveWhere(authority: 'ROLE_USER')
 
@@ -36,8 +31,6 @@ class BootStrap {
         createPerson 'Lari777@mail.ru', 'Loki'
         createPerson 'Graeme_jr@i.ua', 'Dog_Rose'
 
-        def anonymUser = new Person(username: 'anonym', password: 'anonym').save(failOnError: false)
-        PersonRole.create(anonymUser, anonymRole, true)
 
         def createTwit = {String header, String content, BigInteger person_id ->
             Twit.create(header, content, Person.findById(person_id), true)
