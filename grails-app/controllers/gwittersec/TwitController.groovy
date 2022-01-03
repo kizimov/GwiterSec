@@ -7,6 +7,7 @@ import grails.plugin.springsecurity.annotation.Secured
 class TwitController {
 
     TwitService twitService
+    TwitCreateService twitByPersonIDService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 

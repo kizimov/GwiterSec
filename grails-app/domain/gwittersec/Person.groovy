@@ -15,6 +15,8 @@ class Person implements Serializable {
     String username
     String password
 
+    static hasMany = [twits:Twit]
+
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked

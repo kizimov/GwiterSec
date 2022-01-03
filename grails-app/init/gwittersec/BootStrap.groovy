@@ -1,8 +1,5 @@
 package gwittersec
 
-import gwittersec.*
-import org.springframework.security.core.userdetails.UsernameNotFoundException
-
 class BootStrap {
 
     def init = { servletContext ->
@@ -33,7 +30,7 @@ class BootStrap {
 
 
         def createTwit = {String header, String content, BigInteger person_id ->
-            Twit.create(header, content, Person.findById(person_id), true)
+            TwitCreateService.create(header, content, Person.findById(person_id), true)
         }
 
         createTwit 'twit#1', 'some text for twit 1', 1
