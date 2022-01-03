@@ -3,11 +3,11 @@ package gwittersec
 class UrlMappings {
 
     static mappings = {
-        "/$controller/$action?/$id?(.$format)?"{
-            constraints {
-                // apply constraints here
-            }
-        }
+        // "/$controller/$action?/$id?(.$format)?"{
+        //     constraints {
+        //         // apply constraints here
+        //     }
+        // }
 
         "/"(view: '/index')
         "500"(view:'/error')
@@ -21,6 +21,10 @@ class UrlMappings {
         "/twit"(controller: 'twit', action: 'index')
         "/twit/$id"(controller: 'twit', action: 'show')
         "/twit/$id"(controller: 'twit', action: 'create')
+
+        "/person"(controller: 'person', action: 'index')
+        "/person/$id"(controller: 'person', action: 'show')
+
 
     }
 }
