@@ -3,7 +3,7 @@ package gwittersec
 import grails.testing.services.ServiceUnitTest
 import spock.lang.Specification
 
-class TwitCreateServiceSpec extends Specification implements ServiceUnitTest<TwitCreateService>{
+class CustomTwitServiceSpec extends Specification implements ServiceUnitTest<CustomTwitService>{
 
     def setup() {
     }

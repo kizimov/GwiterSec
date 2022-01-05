@@ -4,26 +4,30 @@ import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
-@Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
+
 class PersonController {
 
     PersonService personService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond personService.list(params), model:[personCount: personService.count()]
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
     def show(Long id) {
         respond personService.get(id)
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
     def create() {
         respond new Person(params)
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
     def save(Person person) {
         if (person == null) {
             notFound()
@@ -46,10 +50,12 @@ class PersonController {
         }
     }
 
+    @Secured(['ROLE_ADMIN'])
     def edit(Long id) {
         respond personService.get(id)
     }
 
+    @Secured(['ROLE_ADMIN'])
     def update(Person person) {
         if (person == null) {
             notFound()
@@ -72,6 +78,7 @@ class PersonController {
         }
     }
 
+    @Secured(['ROLE_ADMIN'])
     def delete(Long id) {
         if (id == null) {
             notFound()
@@ -89,6 +96,7 @@ class PersonController {
         }
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
     protected void notFound() {
         request.withFormat {
             form multipartForm {

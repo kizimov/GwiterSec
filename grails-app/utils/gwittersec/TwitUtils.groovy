@@ -3,8 +3,7 @@ package gwittersec
 import grails.gorm.transactions.Transactional
 
 @Transactional
-class TwitCreateService {
-
+class TwitUtils {
     static Twit create(String header, String content, Person person, boolean flush = false) {
         Twit instance = new Twit(header: header, content: content, person: person)
         List twitIsExist = Twit.findAll()
@@ -16,10 +15,5 @@ class TwitCreateService {
             instance.save(flush: flush)
             instance
         }
-    }
-
-    List<Twit> getTwitsByPerson(Long id){
-        Person person = Person.get(id: id)
-        person.getTwits().toList()
     }
 }

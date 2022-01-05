@@ -7,19 +7,19 @@ import grails.plugin.springsecurity.annotation.Secured
 class TwitController {
 
     TwitService twitService
-    TwitCreateService twitByPersonIDService
+    CustomTwitService customTwitService
+
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond twitService.list(params), model:[twitCount: twitService.count()]
+    def index() {
+        respond customTwitService.list()
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
     def show(Long id) {
-        respond twitService.get(id)
+        respond customTwitService.show(id)
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
@@ -29,49 +29,31 @@ class TwitController {
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def save(Twit twit) {
-        if (twit == null) {
-            notFound()
-            return
-        }
+        respond customTwitService.save(twit)
 
-        try {
-            twitService.save(twit)
-        } catch (ValidationException e) {
-            respond twit.errors, view:'create'
-            return
-        }
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'twit.label', default: 'Twit'), twit.id])
-                redirect twit
-            }
-            '*' { respond twit, [status: CREATED] }
-        }
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def edit(Long id) {
-        respond twitService.get(id)
+        respond customTwitService.show(id)
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def update(Twit twit) {
         if (twit == null) {
             notFound()
-            return
         }
 
         try {
-            twitService.save(twit)
+            customTwitService.save(twit)
         } catch (ValidationException e) {
             respond twit.errors, view:'edit'
-            return
-        }
+            }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'twit.label', default: 'Twit'), twit.id])
+                flash.message = message(code: 'default.updated.message',
+                                        args: [message(code: 'twit.label', default: 'Twit'), twit.id])
                 redirect twit
             }
             '*'{ respond twit, [status: OK] }
@@ -84,8 +66,7 @@ class TwitController {
             notFound()
             return
         }
-
-        twitService.delete(id)
+        customTwitService.delete(id)
 
         request.withFormat {
             form multipartForm {
