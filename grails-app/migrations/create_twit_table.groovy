@@ -1,6 +1,6 @@
 databaseChangeLog = {
 
-    changeSet(author: "okizimo (generated)", id: "1639734226048-4") {
+    changeSet(author: "okizimo", id: "create table twit") {
         createTable(tableName: "twit") {
             column(autoIncrement: "true", name: "id", type: "BIGINT") {
                 constraints(primaryKey: "true", primaryKeyName: "twitPK")
@@ -23,7 +23,14 @@ databaseChangeLog = {
             }
         }
     }
-    changeSet(author: "okizimo (generated)", id: "add Foreign Key onstraint twit") {
-        addForeignKeyConstraint(baseColumnNames: "person_id", baseTableName: "twit", constraintName: "FKlhdnp3l0yxx3ukk35fx1jw0x8", deferrable: "false", initiallyDeferred: "false", referencedColumnNames: "id", referencedTableName: "person", validate: "true")
+    changeSet(author: "okizimo", id: "add Foreign Key constraint twit") {
+        addForeignKeyConstraint(baseColumnNames: "person_id",
+                                baseTableName: "twit",
+                                constraintName: "FKlhdnp3l0yxx3ukk35fx1jw0x8",
+                                deferrable: "false",
+                                initiallyDeferred: "false",
+                                referencedColumnNames: "id",
+                                referencedTableName: "person",
+                                validate: "true")
     }
 }

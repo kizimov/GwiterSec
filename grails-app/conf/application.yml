@@ -108,7 +108,6 @@ hibernate:
         use_second_level_cache: false
         use_query_cache: false
 dataSource:
-    dbCreate: none
     pooled: true
     jmxExport: true
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
@@ -117,11 +116,11 @@ dataSource:
     password: root
     url: jdbc:sqlserver://localhost:1434;databaseName=Gwittersec
 
-#environments:
-#    development:
-#        dataSource:
-#            dbCreate: none
-#            url: jdbc:sqlserver://localhost:1434;databaseName=Gwittersec
+environments:
+    development:
+        dataSource:
+            dbCreate: none
+            url: jdbc:sqlserver://localhost:1434;databaseName=Gwittersec
 #    test:
 #        dataSource:
 #            dbCreate: none

@@ -5,7 +5,7 @@ import groovy.transform.ToString
 import grails.compiler.GrailsCompileStatic
 
 
-@GrailsCompileStatic
+// @GrailsCompileStatic
 @EqualsAndHashCode(includes='username')
 @ToString(includes='username', includeNames=true, includePackage=false)
 class Person implements Serializable {
@@ -15,7 +15,7 @@ class Person implements Serializable {
     String username
     String password
 
-    static hasMany = [twits:Twit]
+    static hasMany = [twits:Twit, subscriptions:Person]
 
     boolean enabled = true
     boolean accountExpired
@@ -34,6 +34,10 @@ class Person implements Serializable {
     }
 
     static mapping = {
+        twits joinTable: [name: 'twit']
+        subscriptions joinTable: [name: 'person_person']
+        table 'person'
         password column: '`password`'
+        version true
     }
 }

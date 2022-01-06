@@ -1,6 +1,5 @@
 package gwittersec
 
-import com.sun.xml.bind.v2.model.core.ID
 import grails.gorm.transactions.Transactional
 
 @Transactional

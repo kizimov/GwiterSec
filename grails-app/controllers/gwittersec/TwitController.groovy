@@ -28,14 +28,14 @@ class TwitController {
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
-    def save(Twit twit) {
-        respond customTwitService.save(twit)
-
+    def edit(Long id) {
+        respond customTwitService.show(id)
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
-    def edit(Long id) {
-        respond customTwitService.show(id)
+    def save(Twit twit) {
+        respond customTwitService.save(twit)
+
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])

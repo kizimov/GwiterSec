@@ -15,6 +15,8 @@ class PersonRole implements Serializable {
 	Person person
 	Role role
 
+	static belongsTo = [person: Person]
+
 	@Override
 	boolean equals(other) {
 		if (other instanceof PersonRole) {

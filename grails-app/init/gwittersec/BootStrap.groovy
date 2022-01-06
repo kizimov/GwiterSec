@@ -41,6 +41,8 @@ class BootStrap {
         createTwit 'twit#4', 'some text for twit 4', 4
         createTwit 'twit#2', 'some text for twit 2', 1
 
+       
+
 
     }
     def destroy = {

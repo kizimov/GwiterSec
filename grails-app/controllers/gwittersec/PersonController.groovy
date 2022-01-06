@@ -8,39 +8,48 @@ import static org.springframework.http.HttpStatus.*
 class PersonController {
 
     PersonService personService
+    CustomPersonService customPersonService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond personService.list(params), model:[personCount: personService.count()]
+    def index() {
+        respond customPersonService.list()
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
     def show(Long id) {
-        respond personService.get(id)
+        respond customPersonService.show(id)
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
+    @Secured(['ROLE_ADMIN'])
     def create() {
-        respond new Person(params)
+        println(params.toString())
+        respond customPersonService.list()
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
+    @Secured(['ROLE_ADMIN'])
+    def edit(Long id) {
+        respond customPersonService.show(id)
+    }
+
+    @Secured(['ROLE_ADMIN'])
+    def addSubscriptions(Person person) {
+        respond customPersonService.addSubscriptions(person)
+    }
+
+    @Secured(['ROLE_ADMIN'])
     def save(Person person) {
         if (person == null) {
             notFound()
             return
         }
-
         try {
             personService.save(person)
         } catch (ValidationException e) {
             respond person.errors, view:'create'
             return
         }
-
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'person.label', default: 'Person'), person.id])
@@ -48,11 +57,6 @@ class PersonController {
             }
             '*' { respond person, [status: CREATED] }
         }
-    }
-
-    @Secured(['ROLE_ADMIN'])
-    def edit(Long id) {
-        respond personService.get(id)
     }
 
     @Secured(['ROLE_ADMIN'])
@@ -85,7 +89,7 @@ class PersonController {
             return
         }
 
-        personService.delete(id)
+        customPersonService.delete(id)
 
         request.withFormat {
             form multipartForm {
