@@ -24,9 +24,23 @@ class BootStrap {
 
         createPerson 'example', 'password'
         createPerson 'user', 'user'
-        createPerson 'Jeff@gmail.com', 'pass1234'
-        createPerson 'Lari777@mail.ru', 'Loki'
-        createPerson 'Graeme_jr@i.ua', 'Dog_Rose'
+        createPerson 'Jeff', 'pass1234'
+        createPerson 'Lari777', 'Loki'
+        createPerson 'Graeme_jr', 'Dog_Rose'
+
+        // add new subscriptions for person
+        CustomPersonService customPersonService = new CustomPersonService()
+        customPersonService.follow(Person.findByUsername('example').getId(),Person.findByUsername('user').getId())
+        customPersonService.follow(Person.findByUsername('example').getId(),Person.findByUsername('Jeff').getId())
+        customPersonService.follow(Person.findByUsername('example').getId(),Person.findByUsername('Lari777').getId())
+        customPersonService.follow(Person.findByUsername('example').getId(),Person.findByUsername('Graeme_jr').getId())
+        customPersonService.follow(Person.findByUsername('example').getId(),Person.findByUsername('admin').getId())
+        customPersonService.follow(Person.findByUsername('Jeff').getId(),Person.findByUsername('user').getId())
+        customPersonService.follow(Person.findByUsername('admin').getId(),Person.findByUsername('Jeff').getId())
+        customPersonService.follow(Person.findByUsername('Jeff').getId(),Person.findByUsername('Lari777').getId())
+        customPersonService.follow(Person.findByUsername('Jeff').getId(),Person.findByUsername('Graeme_jr').getId())
+        customPersonService.follow(Person.findByUsername('Graeme_jr').getId(),Person.findByUsername('admin').getId())
+
 
 
         def createTwit = {String header, String content, BigInteger person_id ->

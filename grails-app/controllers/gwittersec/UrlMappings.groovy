@@ -1,7 +1,5 @@
 package gwittersec
 
-import java.lang.reflect.Method
-
 class UrlMappings {
 
     static mappings = {
@@ -39,7 +37,8 @@ class UrlMappings {
         "/person/$id"(controller: 'person', action: 'update', method: 'PUT')
         "/person/create"(controller: 'person', action: 'create', method: 'GET')
         "/person/create/$id"(controller: 'person', action: 'create', method: 'GET')
-
+        "/person/subscribe/$id"(controller: 'person', action: 'subscribe', method: 'GET')
+        "/person/subscriptions/$id"(controller: 'person', action: 'subscriptions', method: 'GET')
         "/person/delete/$id"(controller: 'person', action: 'delete', method: 'DELETE')
         "/person/delete/$id"(controller: 'person', action: 'delete', method: 'POST')
         "/person/save"(controller: 'person', action: 'save', method: 'POST')

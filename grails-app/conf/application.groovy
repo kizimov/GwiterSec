@@ -27,3 +27,5 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 ]
 
 //grails.plugin.springsecurity.successHandler.defaultTargetUrl='/twit'
+// grails.plugin.springsecurity.useBasicAuth = true
+

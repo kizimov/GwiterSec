@@ -14,7 +14,7 @@ class PersonController {
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
     def index() {
-        respond customPersonService.list()
+        respond personService.list()
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
@@ -30,12 +30,20 @@ class PersonController {
 
     @Secured(['ROLE_ADMIN'])
     def edit(Long id) {
+        println request.getUserPrincipal()
         respond customPersonService.show(id)
     }
 
-    @Secured(['ROLE_ADMIN'])
-    def addSubscriptions(Person person) {
-        respond customPersonService.addSubscriptions(person)
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    def subscribe(Long id) {
+        Long followsId = Person.findByUsername(request.getUserPrincipal().getName()).getId()
+        customPersonService.follow(id, followsId)
+        redirect(customPersonService.show(followsId))
+    }
+
+    @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])
+    def subscriptions(Long id) {
+        render customPersonService.showSubscriptions(id)
     }
 
     @Secured(['ROLE_ADMIN'])

@@ -19,7 +19,6 @@ class Twit implements Validateable {
     }
 
 
-
     static mapping = {
         table 'twit'
         version true
