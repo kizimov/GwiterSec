@@ -39,9 +39,6 @@ class BootStrap {
         customPersonService.follow(Person.findByUsername('admin').getId(),Person.findByUsername('Jeff').getId())
         customPersonService.follow(Person.findByUsername('Jeff').getId(),Person.findByUsername('Lari777').getId())
         customPersonService.follow(Person.findByUsername('Jeff').getId(),Person.findByUsername('Graeme_jr').getId())
-        customPersonService.follow(Person.findByUsername('Graeme_jr').getId(),Person.findByUsername('admin').getId())
-
-
 
         def createTwit = {String header, String content, BigInteger person_id ->
             TwitUtils.create(header, content, Person.findById(person_id), true)
@@ -54,10 +51,6 @@ class BootStrap {
         createTwit 'twit#3', 'some text for twit 3', 3
         createTwit 'twit#4', 'some text for twit 4', 4
         createTwit 'twit#2', 'some text for twit 2', 1
-
-       
-
-
     }
     def destroy = {
     }
