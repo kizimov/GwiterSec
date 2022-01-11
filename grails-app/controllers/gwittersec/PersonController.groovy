@@ -9,6 +9,7 @@ class PersonController {
 
     PersonService personService
     CustomPersonService customPersonService
+    PersonJasperReportService personJasperReportService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -37,8 +38,21 @@ class PersonController {
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def subscribe(Long id) {
         Long followsId = Person.findByUsername(request.getUserPrincipal().getName()).getId()
-        customPersonService.follow(id, followsId)
+        if (PersonUtils.checkFollowOneSelf(id, followsId)) {
+            render " you can't subscribe to yourself!!!"
+        } else {
+            customPersonService.follow(id, followsId)
+        }
         redirect(customPersonService.show(followsId))
+    }
+
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    def report(Long id) {
+        byte[] report = personJasperReportService.buildReport(Person.get(id))
+        response.setContentType("application/pdf")
+        response.contentLength = report.size()
+        response.outputStream << report
+
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS'])

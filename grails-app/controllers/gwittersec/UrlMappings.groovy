@@ -42,6 +42,7 @@ class UrlMappings {
         "/person/delete/$id"(controller: 'person', action: 'delete', method: 'DELETE')
         "/person/delete/$id"(controller: 'person', action: 'delete', method: 'POST')
         "/person/save"(controller: 'person', action: 'save', method: 'POST')
+        "/person/report/$id"(controller: 'person', action: 'report', method: 'GET')
 
     }
 }
