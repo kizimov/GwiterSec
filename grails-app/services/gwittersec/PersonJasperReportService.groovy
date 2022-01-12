@@ -28,7 +28,8 @@ class PersonJasperReportService {
 
     private Map toMap(Person person) {
         [
-            person : [username: person.username]
+            person : [username: person.username, enabled: person.enabled, subscriptions: person.subscriptions]
+
 
         ]
     }

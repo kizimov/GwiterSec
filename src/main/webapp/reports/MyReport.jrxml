@@ -4,28 +4,42 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<field name="person.username" class="java.lang.String"/>
+	<field name="person.enabled" class="java.lang.Boolean"/>
+	<field name="person.subscriptions" class="java.lang.Object"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="38" splitType="Stretch">
 			<textField>
-				<reportElement uuid="18389136-7ed8-4279-ba26-a3d42d8f90a9" x="34" y="21" width="498" height="32"/>
+				<reportElement uuid="18389136-7ed8-4279-ba26-a3d42d8f90a9" x="32" y="0" width="498" height="32"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Hello " + $F{person.username}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Person  " + $F{person.username}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement uuid="b1dbf7e2-3cbf-4632-89d4-1cda27c3ef03" x="0" y="0" width="184" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Enable status " + $F{person.enabled}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="124" splitType="Stretch">
+			<textField>
+				<reportElement uuid="b613e8c0-7450-41b0-b70f-0c1b79b71e80" x="0" y="0" width="555" height="124"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Subscriptions " + $F{person.subscriptions}]]></textFieldExpression>
+			</textField>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="143" splitType="Stretch"/>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
