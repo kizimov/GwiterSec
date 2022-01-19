@@ -6,7 +6,8 @@ import grails.gorm.transactions.Transactional
 class CustomPersonService implements PersonService{
 
     Person show(Long id){
-        Person.get(id)
+        println ("get id = " + id)
+        Person.findById(id)
     }
 
     Set <Person> showSubscriptions(Long id){
